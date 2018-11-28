@@ -1,7 +1,6 @@
 let audioCtx = new AudioContext();
 
 var gainNode =audioCtx.createGain();
-gainNode.gain.value = 0.2;
 
 gainNode.connect(audioCtx.destination);
 let source = audioCtx.createBufferSource();
@@ -18,8 +17,11 @@ request.onload = function() {
         source.buffer = buffer;
         source.connect(gainNode);
         source.loop = true;
-        //source.start(0);
+      //  source.start(0);
     });
 };
+document.getElementById('volume').addEventListener('change', function () {
+  gainNode.gain.value = this.value;
+ });
 
 request.send();
