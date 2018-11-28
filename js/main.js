@@ -1,4 +1,9 @@
 let audioCtx = new AudioContext();
+
+var gainNode =audioCtx.createGain();
+gainNode.gain.value = 0.2;
+
+gainNode.connect(audioCtx.destination);
 let source = audioCtx.createBufferSource();
 
 let request = new XMLHttpRequest();
@@ -11,7 +16,7 @@ request.onload = function() {
 
     audioCtx.decodeAudioData(audioData, function(buffer) {
         source.buffer = buffer;
-        source.connect(audioCtx.destination);
+        source.connect(gainNode);
         source.loop = true;
         //source.start(0);
     });
