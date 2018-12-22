@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <link rel="stylesheet" href="node_modules/jquery-ui-dist/jquery-ui.min.css" />
+    <link rel="stylesheet" href="node_modules/primeui/primeui.min.css" />
+    <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="node_modules/primeui/themes/dot-luv/theme.css" />
+
+    <script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="node_modules/jquery-ui-dist/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="node_modules/primeui/primeui.min.js"></script>
+    <script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="node_modules/mustache/mustache.min.js"></script>
+
+    <link href="css/audio.css" rel="stylesheet">
+
+    <title>MM AV Beleg</title>
+</head>
+
+<body style="background: #bbbbbb;">
+    <div style="padding: 50px;">
+        <div style="text-align: center;">
+            <u>
+                <h1>Audio</h1>
+            </u>
+        </div>
+        <p style="font-size: 2em;">&nbsp;</p>
+        <div class="row">
+            <div class="col col-6">
+                <!-- Visualisierung Tonspur1 -->
+                <div style="background: blue; width: 100%; height: 100px;"></div>
+            </div>
+            <div class="col col-6">
+                <!-- Visualisierung Tonspur2 -->
+                <div style="background: blue; width: 100%; height: 100px;"></div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col col-6">
+                <button class="btn btn-dark sliderButton"><i class="fa fa-play"></i></button>
+                <button class="btn btn-dark sliderButton"><i class="fa fa-pause"></i></button>
+                <input type="range" min="1" max="100" value="50" class="slider" id="volumeRange1">
+            </div>
+            <div class="col col-6">
+                <button class="btn btn-dark sliderButton"><i class="fa fa-play"></i></button>
+                <button class="btn btn-dark sliderButton"><i class="fa fa-pause"></i></button>
+                <input type="range" min="1" max="100" value="50" class="slider" id="volumeRange2">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-6">
+                <div style="background: lightgrey;">
+                    <div class="row">
+                        <div class="col col-1">
+                            <input type="checkbox" name="effekt1" id="effekt1">
+                        </div>
+                        <div class="col col-5">
+                            Effekt 1
+                        </div>
+                        <div class="col col-1">
+                            <input type="checkbox" name="effekt3" id="effekt3">
+                        </div>
+                        <div class="col col-5">
+                            Effekt 3
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col col-1">
+                            <input type="checkbox" name="effekt2" id="effekt2">
+                        </div>
+                        <div class="col col-5">
+                            Effekt 2
+                        </div>
+                        <div class="col col-1">
+                            <input type="checkbox" name="effekt4" id="effekt4">
+                        </div>
+                        <div class="col col-5">
+                            Effekt 4
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col col-6">
+                <div style="background: lightgrey;">
+                    <div class="row">
+                        <div class="col col-1">
+                            <input type="checkbox" name="effekt1" id="effekt1">
+                        </div>
+                        <div class="col col-5">
+                            Effekt 1
+                        </div>
+                        <div class="col col-1">
+                            <input type="checkbox" name="effekt3" id="effekt3">
+                        </div>
+                        <div class="col col-5">
+                            Effekt 3
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col col-1">
+                            <input type="checkbox" name="effekt2" id="effekt2">
+                        </div>
+                        <div class="col col-5">
+                            Effekt 2
+                        </div>
+                        <div class="col col-1">
+                            <input type="checkbox" name="effekt4" id="effekt4">
+                        </div>
+                        <div class="col col-5">
+                            Effekt 4
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="text-align: center;">
+            <u><a href="video.html">Zu Video</a></u>
+        </div>
+    </div>
+</body>
+
+<script src="./js/main.js"></script>
+
+</html>
