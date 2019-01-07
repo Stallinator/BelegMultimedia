@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="node_modules/primeui/themes/dot-luv/theme.css" />
 
+
     <script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="node_modules/jquery-ui-dist/jquery-ui.min.js"></script>
     <script type="text/javascript" src="node_modules/primeui/primeui.min.js"></script>
@@ -58,9 +59,13 @@
                         <div class="col col-1">
                             <input type="checkbox" name="effekt1" id="effekt1">
                         </div>
-                        <div class="col col-5">
-                            Effekt 1
+                        <div class="col col-2">
+                            Crossfader
                         </div>
+                        <div class="col col-3">
+                            <input type="range" min="0" max="1" step="0.01" value="0.5" class="slider" id="crossfaderRange">
+                        </div>
+
                         <div class="col col-1">
                             <input type="checkbox" name="effekt3" id="effekt3">
                         </div>

@@ -23,8 +23,9 @@ class AudioPlayer {
 
     webAudioManager.registerAudioPlayer(this);
 
-    this.onTogglePlay.bind(this);
-    this.onVolumeChange.bind(this);
+
+    //this.togglePlay.bind(this);
+    //this.chang.bind(this);
   }
 
   receiveAudioData() {
@@ -41,7 +42,7 @@ class AudioPlayer {
     this.isReady = true;
   }
 
-  onTogglePlay() {
+  togglePlay() {
     if (!this.isReady) return;
 
     if (this.isPlaying) {
@@ -57,9 +58,16 @@ class AudioPlayer {
     this.isPlaying = !this.isPlaying;
   }
 
-  onVolumeChange(event) {
-    this.gainNode.gain.value = event.target.value;
+  setVolume(volume) {
+    this.volume = volume;
+    this.gainNode.gain.value = volume;
   }
+
+  /*
+  onVolumeChange(event) {
+    this.setVolume(event.target.value);
+  }
+  */
 }
 
 export default AudioPlayer;
