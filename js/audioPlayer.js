@@ -15,7 +15,8 @@ class AudioPlayer {
     this.request.send();
 
     this.isPlaying = false;
-    this.volume = 1.0;
+    this.volume = 0.5;
+    this.crossfadeGain = 0.71;
     this.isReady = false;
 
     this.gainNode = webAudioManager.createGainNode();
@@ -60,7 +61,14 @@ class AudioPlayer {
 
   setVolume(volume) {
     this.volume = volume;
-    this.gainNode.gain.value = volume;
+    console.log("Volume: " + this.volume);
+    this.gainNode.gain.value = this.volume * this.crossfadeGain;
+  }
+
+  setCrossfadeGain(gain) {
+    this.crossfadeGain = gain;
+    console.log("crossfade Gain: " + this.crossfadeGain);
+    this.gainNode.gain.value = this.volume * this.crossfadeGain;
   }
 
   /*

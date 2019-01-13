@@ -17,7 +17,7 @@ class AudioUIManager {
   crossfade(event) {
     //console.log(event.target.value);
     webAudioManager.crossfade(event.target.value);
-    this.updateUI();
+    //this.updateUI();
   }
 
   registerAudioPlayer(audioPlayer, playBtn, volumeSlider) {
