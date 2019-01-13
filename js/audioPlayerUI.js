@@ -11,13 +11,10 @@ class AudioPlayerUI {
   }
 
   play() {
-    //console.log(this);
     this.audioPlayer.togglePlay();
   }
 
   changeVolume(event) {
-    //console.log(this);
-    //console.log(event);
     this.audioPlayer.setVolume(event.target.value);
   }
 }
