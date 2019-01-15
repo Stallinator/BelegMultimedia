@@ -8,12 +8,16 @@ class WebAudioManager {
 
       this.audioContext = new (window.AudioContext||window.webkitAudioContext)();
 
+
+
       // Create empty array for all audio player
       this.audioPlayers = [];
 
       // Bind example
       //navigator.requestMIDIAccess().then(this.onMidiSuccess.bind(this));
     }
+
+    
 
     createBufferSource() {
       return this.audioContext.createBufferSource();

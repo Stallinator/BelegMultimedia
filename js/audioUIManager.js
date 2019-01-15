@@ -33,6 +33,7 @@ class AudioUIManager {
     }
 
   }
+  
 }
 
 export default new AudioUIManager();
