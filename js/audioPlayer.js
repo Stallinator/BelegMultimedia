@@ -20,10 +20,10 @@ class AudioPlayer {
     this.isReady = false;
 
     this.gainNode = webAudioManager.createGainNode();
-    this.analyser = webAudioManager.createAnalyser();
+    this.analyserNode = webAudioManager.createAnalyserNode();
 
-    this.gainNode.connect(this.analyser);
-    this.analyser.connect(webAudioManager.getDestination());
+    this.gainNode.connect(this.analyserNode);
+    this.analyserNode.connect(webAudioManager.getDestination());
 
     webAudioManager.registerAudioPlayer(this);
 
@@ -32,13 +32,17 @@ class AudioPlayer {
     //this.chang.bind(this);
   }
 
+  getByteFrequencyData() {
+    this.analyserNode.fftSize = 64;
+    var frequencyData = new Uint8Array(this.analyserNode.frequencyBinCount);
+    this.analyserNode.getByteFrequencyData(frequencyData);
+    this.analyserNode.smoothingTimeConstant = 0.7;
 
-}
+    return frequencyData;
+  }
+
   visualize() {
-    this.analyser.fftSize = 64;
-    var frequenzdaten = new Uint8Array(analyse.frequencyBinCount);
-    this.analyser.smoothingTimeConstant = 0.7;
-    AudioUIManager.draw(this.analyser.getByteFrequencyData(frequenzdaten););
+    AudioUIManager.draw(this.analyser.getByteFrequencyData(frequenzdaten));
 
   }
 

@@ -44,8 +44,6 @@ class WebAudioManager {
 
     // Fades between 0 (all source 1) and 1 (all source 2)
     crossfade(x) {
-      //console.log("x " + x);
-      //console.log(event.target.value);
       // Use an equal-power crossfading curve:
       var gain1 = Math.cos(x * 0.5*Math.PI);
       var gain2 = Math.cos((1.0 - x) * 0.5*Math.PI);

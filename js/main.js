@@ -13,23 +13,17 @@ document.getElementById("volumeRange1").onchange = audioPlayer1.onVolumeChange.b
 document.getElementById("playBtn2").onclick = audioPlayer2.onTogglePlay.bind(audioPlayer2);
 document.getElementById("volumeRange2").onchange = audioPlayer2.onVolumeChange.bind(audioPlayer2);
 */
-//document.getElementById("crossfaderRange").onchange = webAudioManager.crossfade.bind(webAudioManager);
 
-audioUIManager.registerAudioPlayer(audioPlayer1, document.getElementById("playBtn1"), document.getElementById("volumeRange1"));
-audioUIManager.registerAudioPlayer(audioPlayer2, document.getElementById("playBtn2"), document.getElementById("volumeRange2"));
+audioUIManager.registerAudioPlayer(audioPlayer1, document.getElementById("playBtn1"), document.getElementById("volumeRange1"), document.getElementById("visualCanvas1"));
+audioUIManager.registerAudioPlayer(audioPlayer2, document.getElementById("playBtn2"), document.getElementById("volumeRange2"),  document.getElementById("visualCanvas2"));
 
 audioUIManager.setCrossfader(document.getElementById("crossfaderRange"));
 
+
+
+window.requestAnimationFrame(audioUIManager.visualize.bind(audioUIManager));
+
 /*
-var crossfaderRange = document.getElementById("crossfaderRange");
-var volumeRange1 = document.getElementById("volumeRange1");
-//$('#default').puiinputtextarea();
-
-crossfaderRange.onchange = function() {
-  console.log(crossfaderRange.value);
-  webAudioManager.crossfadeX(crossfaderRange.value);
-};
-
 volumeRange1.oninput = () => {
     console.log(volumeRange1.value);
 };
