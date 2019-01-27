@@ -14,17 +14,24 @@ document.getElementById("playBtn2").onclick = audioPlayer2.onTogglePlay.bind(aud
 document.getElementById("volumeRange2").onchange = audioPlayer2.onVolumeChange.bind(audioPlayer2);
 */
 
+setCanvasSize();
 audioUIManager.registerAudioPlayer(audioPlayer1, document.getElementById("playBtn1"), document.getElementById("volumeRange1"), document.getElementById("visualCanvas1"));
 audioUIManager.registerAudioPlayer(audioPlayer2, document.getElementById("playBtn2"), document.getElementById("volumeRange2"),  document.getElementById("visualCanvas2"));
 
 audioUIManager.setCrossfader(document.getElementById("crossfaderRange"));
 
 
+// Eventmanager
+window.requestAnimationFrame(audioUIManager.visualBars.bind(audioUIManager));
+window.onresize = setCanvasSize;
 
-window.requestAnimationFrame(audioUIManager.visualize.bind(audioUIManager));
 
-/*
-volumeRange1.oninput = () => {
-    console.log(volumeRange1.value);
-};
-*/
+// Functions
+function setCanvasSize() {
+  var padding = 15;
+  var visCanvas1 = document.querySelector("#visualCanvas1");
+  var visCanvas2 = document.querySelector("#visualCanvas2");
+  visCanvas1.width = visCanvas1.parentElement.offsetWidth - 2 * padding;
+  visCanvas2.width = visCanvas2.parentElement.offsetWidth - 2 * padding;
+  console.log(visCanvas1);
+}

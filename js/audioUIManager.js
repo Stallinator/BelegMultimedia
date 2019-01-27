@@ -34,33 +34,52 @@ class AudioUIManager {
 
   }
 
-  visualize() {
 
+  visualBars() {
     for (var p = 0; p < this.audioPlayersUI.length; p++) {
-      var frequenzdaten = this.audioPlayersUI[p].audioPlayer.getByteFrequencyData();
-      var leinwand = this.audioPlayersUI[p].visualCanvas.getContext("2d");
-      var leinwand_breite = this.audioPlayersUI[p].visualCanvas.offsetWidth;
-      var leinwand_hoehe = this.audioPlayersUI[p].visualCanvas.offsetHeight;
-      leinwand.clearRect(0, 0, leinwand_breite, leinwand_hoehe);
+      //for (var p = 0; p < 1; p++) {
+      var canvas = this.audioPlayersUI[p].visualCanvas;
+      var canvasCtx = canvas.getContext("2d");
+      var canvasWidth = canvas.offsetWidth;
+      var canvasHeight = canvas.offsetHeight;
+      canvasCtx.clearRect(0, 0, canvasWidth, canvasHeight);
+      canvasCtx.fillStyle = "#008000";
 
+      var colorString = ["#00a000", "#008000", "#f0a000", "#cc4000", "#FF0000"];
 
-      for (var i = 0; i < frequenzdaten.length; i++) {
-        var balken_x = Math.round(leinwand_breite / frequenzdaten.length) * i;
-        var balken_breite = Math.round(leinwand_breite / frequenzdaten.length) - 1;
-        var balken_hoehe = leinwand_hoehe / 100 * Math.round(-frequenzdaten[i] / 255 * 100);
-        var farbe_rot = frequenzdaten[i];
-        var farbe_gruen = 255 - frequenzdaten[i];
-        leinwand.fillStyle = "rgb(" + farbe_rot + ", " + farbe_gruen + ", 0)";
-        leinwand.fillRect(balken_x, leinwand_hoehe, balken_breite, balken_hoehe);
+      var frequencyData = this.audioPlayersUI[p].audioPlayer.getByteFrequencyData();
+      var barWidth = Math.round(canvasWidth / frequencyData.length) - 1;
+      //var barWidth = canvasWidth / frequencyData.length;
+      //console.log(barWidth);
+      for (var i = 0; i < frequencyData.length; i++) {
+          //console.log ("f: " + frequencyData[i]);
+          var x = i * Math.round(canvasWidth / frequencyData.length);
+          //var y = Math.round(frequencyData[i] / 255 * canvasHeight);
+
+          var y = frequencyData[i] / 255;
+          var red = 0;
+          var green = 255;
+
+          for (var seg = 0; seg < 5 && y >= 0; seg++) {
+            canvasCtx.fillStyle = colorString[seg];
+            if (y < 0.2) {
+              canvasCtx.fillRect(x, canvasHeight - Math.round(0.2 * seg * canvasHeight), barWidth, -1 * Math.round(y * canvasHeight));
+            } else {
+              canvasCtx.fillRect(x, canvasHeight - Math.round(0.2 * seg * canvasHeight), barWidth, -1 * Math.round(0.2 * canvasHeight));
+            }
+            y = y - 0.2;
+          }
+          //canvasCtx.fillRect(x, canvasHeight, barWidth, -1 * y);
+
       }
+      //canvasCtx.fillRect(21, canvasHeight, 20, -150);
 
 
     }
-
-  window.requestAnimationFrame(this.visualize.bind(this));
-
-
+    window.requestAnimationFrame(this.visualBars.bind(this));
+    //window.setTimeout(this.visualBars.bind(this), 4000);
   }
+
 
 }
 

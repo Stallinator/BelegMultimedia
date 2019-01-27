@@ -4,7 +4,6 @@ class AudioPlayerUI {
     this.playBtn = playBtn;
     this.volumeSlider = volumeSlider;
     this.visualCanvas = visualCanvas;
-
     // Events
     this.playBtn.onclick = this.play.bind(this);
     this.volumeSlider.onclick = this.changeVolume.bind(this);//this.audioPlayer.onVolumeChange.bind(this.audioPlayer);
