@@ -16,7 +16,10 @@ class WebAudioManager {
       // Bind example
       //navigator.requestMIDIAccess().then(this.onMidiSuccess.bind(this));
     }
-
+    
+    createMediaElementSource(audioElement) {
+      return this.audioContext.createMediaElementSource(audioElement);
+    }
 
     createAnalyserNode() {
       return this.audioContext.createAnalyser();

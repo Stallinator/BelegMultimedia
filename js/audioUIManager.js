@@ -20,9 +20,9 @@ class AudioUIManager {
     //this.updateUI();
   }
 
-  registerAudioPlayer(audioPlayer, playBtn, volumeSlider, visualCanvas) {
+  registerAudioPlayer(audioPlayer, playBtn, volumeSlider, visualCanvas, progressBar) {
     console.log("register audio player");
-    var playerUI = new AudioPlayerUI(audioPlayer, playBtn, volumeSlider, visualCanvas);
+    var playerUI = new AudioPlayerUI(audioPlayer, playBtn, volumeSlider, visualCanvas, progressBar);
     this.audioPlayersUI.push(playerUI);
   }
 
