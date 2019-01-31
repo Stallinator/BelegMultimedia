@@ -23,7 +23,8 @@ class HtmlAudioPlayer {
 
     this.isPlaying = false;
     this.crossfadeGain = 0.71;
-    this.volume = this.setVolume(0.5);
+    //this.volume = 0.5;
+    this.setVolume(0.7);
     this.isReady = false;
 
     // Connecting
@@ -34,6 +35,8 @@ class HtmlAudioPlayer {
     webAudioManager.registerAudioPlayer(this);
 
 
+    this.setCrossfadeGain.bind(this);
+    this.setVolume.bind(this);
     //this.togglePlay.bind(this);
     //this.chang.bind(this);
   }
@@ -62,14 +65,11 @@ class HtmlAudioPlayer {
 
   setVolume(volume) {
     this.volume = volume;
-    console.log("Volume: " + this.volume);
     this.gainNode.gain.value = this.volume * this.crossfadeGain;
-    console.log("GesamtVolume: " + this.gainNode.gain.value);
   }
 
   setCrossfadeGain(gain) {
     this.crossfadeGain = gain;
-    console.log("crossfade Gain: " + this.crossfadeGain);
     this.gainNode.gain.value = this.volume * this.crossfadeGain;
   }
 

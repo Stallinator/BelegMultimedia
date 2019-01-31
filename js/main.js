@@ -15,6 +15,8 @@ let audioPlayer1 = new HtmlAudioPlayer("../media/Guitar-Song.mp3", audioElement1
 let audioPlayer2 = new HtmlAudioPlayer("../media/mandalas.mpd", audioElement2, true);
 
 
+
+
 /*
 document.getElementById("playBtn1").onclick = audioPlayer1.onTogglePlay.bind(audioPlayer1);
 document.getElementById("volumeRange1").onchange = audioPlayer1.onVolumeChange.bind(audioPlayer1);
@@ -25,9 +27,9 @@ document.getElementById("volumeRange2").onchange = audioPlayer2.onVolumeChange.b
 
 setCanvasSize();
 audioUIManager.registerAudioPlayer(audioPlayer1, document.getElementById("playBtn1"), document.getElementById("volumeRange1"),
-  document.getElementById("visualCanvas1"), document.getElementById("trackprogress1"));
+  document.getElementById("visualCanvas1"), document.getElementById("trackprogress1"), document.getElementById("duration1"), document.getElementById("currentTime1"));
 audioUIManager.registerAudioPlayer(audioPlayer2, document.getElementById("playBtn2"), document.getElementById("volumeRange2"),
-  document.getElementById("visualCanvas2"), document.getElementById("trackprogress2"));
+  document.getElementById("visualCanvas2"), document.getElementById("trackprogress2"), document.getElementById("duration2"), document.getElementById("currentTime2"));
 
 audioUIManager.setCrossfader(document.getElementById("crossfaderRange"));
 

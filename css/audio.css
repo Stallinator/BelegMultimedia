@@ -20,6 +20,9 @@
   .sliderButton > i {
       display: grid;
   } */
+  .content-box {
+    margin-bottom: 10px;
+  }
 
   .slider {
       margin: 0 !important;

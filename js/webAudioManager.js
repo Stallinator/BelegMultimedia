@@ -16,7 +16,7 @@ class WebAudioManager {
       // Bind example
       //navigator.requestMIDIAccess().then(this.onMidiSuccess.bind(this));
     }
-    
+
     createMediaElementSource(audioElement) {
       return this.audioContext.createMediaElementSource(audioElement);
     }
@@ -50,6 +50,7 @@ class WebAudioManager {
       // Use an equal-power crossfading curve:
       var gain1 = Math.cos(x * 0.5*Math.PI);
       var gain2 = Math.cos((1.0 - x) * 0.5*Math.PI);
+
       this.audioPlayers[0].setCrossfadeGain(gain1);
       this.audioPlayers[1].setCrossfadeGain(gain2);
     }

@@ -3,11 +3,8 @@ import AudioPlayerUI from './audioPlayerUI.js';
 
 class AudioUIManager {
   constructor() {
-      console.log("AudioUIManager erstellt");
-
       // Create empty array for all audio player
       this.audioPlayersUI = [];
-      //this.visFunction = visAudio;
   }
 
   setCrossfader(element) {
@@ -15,14 +12,11 @@ class AudioUIManager {
   }
 
   crossfade(event) {
-    //console.log(event.target.value);
     webAudioManager.crossfade(event.target.value);
-    //this.updateUI();
   }
 
-  registerAudioPlayer(audioPlayer, playBtn, volumeSlider, visualCanvas, progressBar) {
-    console.log("register audio player");
-    var playerUI = new AudioPlayerUI(audioPlayer, playBtn, volumeSlider, visualCanvas, progressBar);
+  registerAudioPlayer(audioPlayer, playBtn, volumeSlider, visualCanvas, progressBar, durationField, currTimeField) {
+    var playerUI = new AudioPlayerUI(audioPlayer, playBtn, volumeSlider, visualCanvas, progressBar, durationField, currTimeField);
     this.audioPlayersUI.push(playerUI);
   }
 
