@@ -1,5 +1,6 @@
 class AudioPlayerUI {
-  constructor(audioPlayer, playBtn, volumeSlider, visualCanvas, progressBar, durationField, currTimeField) {
+  constructor(audioPlayer, playBtn, volumeSlider, visualCanvas, progressBar, durationField,
+    currTimeField, effect1Btn, effect1Slider) {
     this.audioPlayer = audioPlayer;
     this.playBtn = playBtn;
     this.volumeSlider = volumeSlider;
@@ -7,9 +8,13 @@ class AudioPlayerUI {
     this.progressBar = progressBar;
     this.durationField = durationField;
     this.currTimeField = currTimeField;
+    this.effect1Btn = effect1Btn;
+    this.effect1Slider = effect1Slider;
     // Events
     this.playBtn.onclick = this.play.bind(this);
-    this.volumeSlider.onchange = this.changeVolume.bind(this);//this.audioPlayer.onVolumeChange.bind(this.audioPlayer);
+    this.volumeSlider.onchange = this.changeVolume.bind(this);
+    this.effect1Slider.onchange = this.changeFrequency.bind(this);
+    this.effect1Btn.onchange = this.toggleEffect1.bind(this)  ;
 
     this.audioPlayer.audioElement.ontimeupdate = this.updateProgressBar.bind(this);
     this.audioPlayer.audioElement.onended = this.updatePlayButton.bind(this);
@@ -47,15 +52,25 @@ class AudioPlayerUI {
   }
 
   secToTimeString(s) {
-    var measuredTime = new Date(null);
-    measuredTime.setSeconds(s);
-    return measuredTime.toISOString().substr(14, 5);
+    var dateTime = new Date(null);
+    dateTime.setSeconds(s);
+    return dateTime.toISOString().substr(14, 5);
   }
 
+  toggleEffect1(event) {
+    //console.log(event);
+    this.audioPlayer.toggleLowPassFilter();
+  }
 
   changeVolume(event) {
     this.audioPlayer.setVolume(event.target.value);
   }
+
+  changeFrequency(event) {
+    //console.log(event.target.value + " Hz");
+    this.audioPlayer.setFilterFrequency(event.target.value);
+  }
+
 }
 
 export default AudioPlayerUI;

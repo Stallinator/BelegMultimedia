@@ -15,8 +15,9 @@ class AudioUIManager {
     webAudioManager.crossfade(event.target.value);
   }
 
-  registerAudioPlayer(audioPlayer, playBtn, volumeSlider, visualCanvas, progressBar, durationField, currTimeField) {
-    var playerUI = new AudioPlayerUI(audioPlayer, playBtn, volumeSlider, visualCanvas, progressBar, durationField, currTimeField);
+  registerAudioPlayer(audioPlayer, playBtn, volumeSlider, visualCanvas, progressBar, durationField, currTimeField, effect1Btn, effect1Slider) {
+    var playerUI = new AudioPlayerUI(audioPlayer, playBtn, volumeSlider, visualCanvas, progressBar,
+      durationField, currTimeField, effect1Btn, effect1Slider);
     this.audioPlayersUI.push(playerUI);
   }
 

@@ -26,10 +26,10 @@ document.getElementById("volumeRange2").onchange = audioPlayer2.onVolumeChange.b
 
 
 setCanvasSize();
-audioUIManager.registerAudioPlayer(audioPlayer1, document.getElementById("playBtn1"), document.getElementById("volumeRange1"),
-  document.getElementById("visualCanvas1"), document.getElementById("trackprogress1"), document.getElementById("duration1"), document.getElementById("currentTime1"));
-audioUIManager.registerAudioPlayer(audioPlayer2, document.getElementById("playBtn2"), document.getElementById("volumeRange2"),
-  document.getElementById("visualCanvas2"), document.getElementById("trackprogress2"), document.getElementById("duration2"), document.getElementById("currentTime2"));
+audioUIManager.registerAudioPlayer(audioPlayer1, document.getElementById("playBtn1"), document.getElementById("volumeRange1"), document.getElementById("visualCanvas1"), document.getElementById("trackprogress1"),
+document.getElementById("duration1"), document.getElementById("currentTime1"), document.getElementById("lowPassToggle1"), document.getElementById("lowPassRange1"));
+audioUIManager.registerAudioPlayer(audioPlayer2, document.getElementById("playBtn2"), document.getElementById("volumeRange2"), document.getElementById("visualCanvas2"), document.getElementById("trackprogress2"),
+document.getElementById("duration2"), document.getElementById("currentTime2"), document.getElementById("lowPassToggle2"), document.getElementById("lowPassRange2"));
 
 audioUIManager.setCrossfader(document.getElementById("crossfaderRange"));
 

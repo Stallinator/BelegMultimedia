@@ -32,6 +32,11 @@ class WebAudioManager {
       return this.audioContext.createGain();
     }
 
+    createBiquadFilterNode() {
+      return this.audioContext.createBiquadFilter();
+    }
+
+
     decodeAudioData(data) {
       return this.audioContext.decodeAudioData(data);
     }
