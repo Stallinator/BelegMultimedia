@@ -1,7 +1,8 @@
+
 import webAudioManager from './webAudioManager.js';
 import AudioPlayer from './audioPlayer.js';
 import HtmlAudioPlayer from './htmlAudioPlayer.js';
-import audioUIManager from './audioUIManager.js'
+import audioUIManager from './audioUIManager.js';
 
 
 /*
