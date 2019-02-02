@@ -47,8 +47,6 @@ class AudioPlayer {
   }
 
   receiveAudioData() {
-
-
       let audioData = this.request.response;
       webAudioManager.decodeAudioData(audioData).then(
         this.setBuffer.bind(this)
