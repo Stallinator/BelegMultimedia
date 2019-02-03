@@ -2,16 +2,61 @@ import webAudioManager from './webAudioManager.js';
 import AudioPlayerUI from './audioPlayerUI.js';
 
 class AudioUIManager {
+
+  KS_PRESSED = 148;
+
+  KI_CROSSFADE_SLIDER = 64;
+  KI_TOGGLE_PLAY_1 = 16;
+  KI_TOGGLE_PLAY_2 = 17;
+  KI_TOGGLE_LOW_PASS_1 = 50;
+  KI_TOGGLE_LOW_PASS_2 = 51;
+
   constructor() {
       // Create empty array for all audio player
       this.audioPlayersUI = [];
+      this.crossfadeValue = 0.5;
+
+      window.addEventListener('midi', function (e) {
+        console.log(e.detail.data);
+        if(e.detail.data[1] == this.KI_CROSSFADE_SLIDER) {
+          let valueIn = e.detail.data[2] / 127;
+          this.crossfadeValue = valueIn;
+          webAudioManager.crossfade(valueIn);
+          this.updateUI();
+        } else if(e.detail.data[0] != this.KS_PRESSED && e.detail.data[1] == this.KI_TOGGLE_LOW_PASS_1) {
+          this.audioPlayersUI[0].effect1Slider.value = e.detail.data[2] * (100 / 127) * 200;
+        } else if(e.detail.data[0] != this.KS_PRESSED && e.detail.data[1] == this.KI_TOGGLE_LOW_PASS_2) {
+          this.audioPlayersUI[1].effect1Slider.value = e.detail.data[2] * (100 / 127) * 200;
+        } else if (e.detail.data[0] == this.KS_PRESSED) {
+          switch(e.detail.data[1]) {
+            case this.KI_TOGGLE_PLAY_1:
+              this.audioPlayersUI[0].play();
+              break;
+            case this.KI_TOGGLE_PLAY_2:
+              this.audioPlayersUI[1].play();
+              break;
+            case this.KI_TOGGLE_LOW_PASS_1:
+              this.audioPlayersUI[0].toggleEffect1();
+              this.audioPlayersUI[0].effect1Btn.checked = !this.audioPlayersUI[0].effect1Btn.checked;
+              break;
+            case this.KI_TOGGLE_LOW_PASS_2:
+              this.audioPlayersUI[1].toggleEffect1();
+              this.audioPlayersUI[1].effect1Btn.checked = !this.audioPlayersUI[1].effect1Btn.checked;
+              break;
+            default:
+              break;
+          }
+        }
+      }.bind(this));
   }
 
   setCrossfader(element) {
+    this.crossfader = element;
     element.onchange = this.crossfade.bind(this);
   }
 
   crossfade(event) {
+    this.crossfadeValue = event.target.value;
     webAudioManager.crossfade(event.target.value);
   }
 
@@ -23,10 +68,9 @@ class AudioUIManager {
 
   updateUI() {
     for (var i=0; i < this.audioPlayersUI.length; i++) {
-      console.log(this.audioPlayersUI[i].volumeSlider.value);
       this.audioPlayersUI[i].volumeSlider.value = this.audioPlayersUI[i].audioPlayer.volume;
+      this.crossfader.value = this.crossfadeValue;
     }
-
   }
 
 

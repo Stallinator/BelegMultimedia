@@ -1,7 +1,9 @@
+
 import webAudioManager from './webAudioManager.js';
 import AudioPlayer from './audioPlayer.js';
 import HtmlAudioPlayer from './htmlAudioPlayer.js';
-import audioUIManager from './audioUIManager.js'
+import audioUIManager from './audioUIManager.js';
+import MidiManager from './midiManager.js';
 
 
 /*
@@ -11,11 +13,10 @@ let audioPlayer2 = new AudioPlayer("../media/Guitar-Song.mp3");
 const audioElement1 = document.querySelector('#audioPlayer1');
 const audioElement2 = document.querySelector('#audioPlayer2');
 
-let audioPlayer1 = new HtmlAudioPlayer("../media/Guitar-Song.mp3", audioElement1, false);
-let audioPlayer2 = new HtmlAudioPlayer("../media/mandalas.mpd", audioElement2, true);
+let audioPlayer1 = new HtmlAudioPlayer("../media/Guitar-Song.mp3", audioElement1, false, 48, 50);
+let audioPlayer2 = new HtmlAudioPlayer("../media/mandalas.mpd", audioElement2, true, 49, 51);
 
-
-
+let midiManager = new MidiManager();
 
 /*
 document.getElementById("playBtn1").onclick = audioPlayer1.onTogglePlay.bind(audioPlayer1);

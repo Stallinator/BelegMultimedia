@@ -1,7 +1,8 @@
 import webAudioManager from './webAudioManager.js';
+import audioUIManager from './audioUIManager.js'
 
 class HtmlAudioPlayer {
-  constructor(url, audioElement, dash) {
+  constructor(url, audioElement, dash, midiVolumeIndex, midiLowPassIndex) {
 
     if (!url) {
       alert("No URL specified!");
@@ -44,6 +45,18 @@ class HtmlAudioPlayer {
 
     this.setCrossfadeGain.bind(this);
     this.setVolume.bind(this);
+
+    this.midiVolumeIndex = midiVolumeIndex;
+    this.midiLowPassIndex = midiLowPassIndex;
+
+    window.addEventListener('midi', function (e) {
+      if(e.detail.data[1] == this.midiVolumeIndex) {
+        this.setVolume((e.detail.data[2] * (100 / 127)) / 100);
+        audioUIManager.updateUI();
+      } else if(e.detail.data[1] == this.midiLowPassIndex) {
+        this.setFilterFrequency(e.detail.data[2] * (100 / 127) * 200);
+      }
+    }.bind(this));
   }
 
   connectNodes() {
@@ -82,7 +95,6 @@ class HtmlAudioPlayer {
 
   visualize() {
     AudioUIManager.draw(this.analyser.getByteFrequencyData(frequenzdaten));
-
   }
 
   setVolume(volume) {
