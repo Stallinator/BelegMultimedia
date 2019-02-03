@@ -4,7 +4,8 @@
 
 In diesem Repository finden sie unseren Beleg für das Wintersemester 18/19. Es beinhaltet eine simple DJ/VJ Anwendung, welche in JavaScript entwickelt wurde. Es gibt 2 HTML Seiten, eine für den Audio- und eine für den Videoteil. Die audio.html kann entweder über die UI Elemente, oder bei angeschlossenem MIDI-Controller auch über diesen gesteuert werden. Die Tastenbelegung finden Sie unter #Tastenbelegung. Der Beleg orientiert sich an den Minimalanforderungen. Als zusätzliches Feature wurde ein Tiefpassfilter hinzugefügt, welcher über die CheckBox aktiviert werden kann und dann mit dem sich darunter befindlichen Slider die Frequenz regelt.
 Die Lautstärke der Audios kann über die sich darunter befindenden Regler seperat gesteuert werden. Über den Play Button können Sie Audios starten, sowie pausieren. Der nicht-lineare Crossfader befindet sich in der Mitte der beiden Audios unter den Lautstärkereglern. Ganz unten auf der Seite gelangen sie über einen Link zum Videoteil.
-Auf dieser Seite angelangt erwarten Sie 2 Videos welche über den Dash Player abgespielt werden können. Über das Lautsprecher Symbol können sie auch hier seperat die Lautstärke verändern.
+Auf dieser Seite angelangt erwarten Sie 2 Videos welche über den Dash Player abgespielt werden können. Über das Lautsprecher Symbol können sie auch hier seperat die Lautstärke verändern. Unter den beiden Playern sehen sie jeweils ein Canvas, auf welchem das Vordergrundvideo durch ChromaKeying herausgefiltert wurde und über ein Bild gelegt wurde.
+Ganz unten auf der Seite finden Sie den Link zurück zur AudioSeite.
 
 # Installation/Ausführung
 
