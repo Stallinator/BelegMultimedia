@@ -1,5 +1,5 @@
 class VideoPlayer {
-  constructor(url, videoElement, dash, canvas, canvas2, keyColorCheckFn) {
+  constructor(url, videoElement, dash, canvas, canvas2, pbSpeedElement, keyColorCheckFn) {
     if (!url) {
       alert("No URL specified!");
       return;
@@ -18,6 +18,8 @@ class VideoPlayer {
 
     this.canvas2 = canvas2;
     this.context2d2 = canvas2.getContext('2d');
+
+    this.pbSpeedElement = pbSpeedElement;
 
     this.setSizeToVideoElement();
     this.drawFrame();
@@ -51,6 +53,8 @@ class VideoPlayer {
   }
 
   drawFrame() {
+    this.videoElement.playbackRate = this.pbSpeedElement.value;
+
     this.context2d.drawImage(this.videoElement, 0, 0, this.width, this.height);
     let imageData = this.context2d.getImageData(0, 0, this.width, this.height);    
 
