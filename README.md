@@ -17,7 +17,7 @@ Die Seite wird nun in ihrem Standardbrowser geöffnet.
 
 # Tastenbelegung 
 Die Tastenbelegung sehen sie in folgendem Bild.
-![Preview](https://raw.githubusercontent.com/Stallinator/BelegMultimedia/master/doku/tasten.png)
+<img src="/doku/tasten.png" alt="TastenbelegungMIDI"/>
 
 # Bugs
 In GoogleChrome kommt es abundzu dazu, dass die AudioDateien erst dann spielen wenn der Nutzer etwas gemacht hat.
