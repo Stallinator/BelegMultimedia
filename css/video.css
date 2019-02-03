@@ -1,0 +1,10 @@
+.stackedCanvasWrapper {
+    position: relative;
+}
+
+.stackedCanvasWrapper canvas {
+    top: 30px;
+    left: 50%;
+    position: absolute;
+    transform: translateX(-50%);
+}

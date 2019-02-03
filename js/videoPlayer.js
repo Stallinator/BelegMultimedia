@@ -1,5 +1,5 @@
 class VideoPlayer {
-  constructor(url, videoElement, dash, canvas, keyColorCheckFn) {
+  constructor(url, videoElement, dash, canvas, canvas2, keyColorCheckFn) {
     if (!url) {
       alert("No URL specified!");
       return;
@@ -15,6 +15,9 @@ class VideoPlayer {
 
     this.canvas = canvas;
     this.context2d = canvas.getContext('2d');
+
+    this.canvas2 = canvas2;
+    this.context2d2 = canvas2.getContext('2d');
 
     this.setSizeToVideoElement();
     this.drawFrame();
@@ -42,6 +45,9 @@ class VideoPlayer {
 
     this.canvas.width = this.width;
     this.canvas.height = this.height;
+
+    this.canvas2.width = this.width;
+    this.canvas2.height = this.height;
   }
 
   drawFrame() {
@@ -56,6 +62,7 @@ class VideoPlayer {
     }
 
     this.context2d.putImageData(imageData, 0, 0);
+    this.context2d2.putImageData(imageData, 0, 0);
 
     if (this.videoElement.paused || this.videoElement.ended) return;
     
