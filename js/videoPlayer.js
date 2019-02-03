@@ -1,5 +1,5 @@
 class VideoPlayer {
-  constructor(url, videoElement, dash, canvas) {
+  constructor(url, videoElement, dash, canvas, keyColorCheckFn) {
     if (!url) {
       alert("No URL specified!");
       return;
@@ -11,23 +11,24 @@ class VideoPlayer {
     }
 
     this.videoElement = videoElement;
+    this.keyColorCheckFn = keyColorCheckFn;
 
     this.canvas = canvas;
-    this.ctx = canvas.getContext('2d');
+    this.context2d = canvas.getContext('2d');
 
     this.setSizeToVideoElement();
-    this.drawImage();
+    this.drawFrame();
     window.addEventListener('resize', function() {
       this.setSizeToVideoElement();
-      this.drawImage();
+      this.drawFrame();
     }.bind(this), false);
 
     videoElement.addEventListener('play', function () {
-      this.drawImageTimer();
+      this.drawFrameTimer();
     }.bind(this), false);
 
     videoElement.addEventListener('seeked', function () {
-      this.drawImage();
+      this.drawFrame();
     }.bind(this), false);
   }
 
@@ -39,31 +40,29 @@ class VideoPlayer {
     this.canvas.height = this.height;
   }
 
-  drawImageTimer() {
-    if (this.videoElement.paused || this.videoElement.ended)
-    return;
+  drawFrameTimer() {
+    if (this.videoElement.paused || this.videoElement.ended) return;
     
     this.setSizeToVideoElement();
-    this.drawImage();
+    this.drawFrame();
 
     setTimeout(function () {
-      this.drawImageTimer();
+      this.drawFrameTimer();
     }.bind(this), 0);
   }
 
-  drawImage() {
-    this.ctx.drawImage(this.videoElement, 0, 0, this.width, this.height);
-    let frame = this.ctx.getImageData(0, 0, this.width, this.height);
-    let l = frame.data.length / 4;
+  drawFrame() {
+    this.context2d.drawImage(this.videoElement, 0, 0, this.width, this.height);
+    let imageData = this.context2d.getImageData(0, 0, this.width, this.height);    
 
-    for (let i = 0; i < l; i++) {
-      let r = frame.data[i * 4 + 0];
-      let g = frame.data[i * 4 + 1];
-      let b = frame.data[i * 4 + 2];
-      if (g > 100 && r > 100 && b < 43)
-        frame.data[i * 4 + 3] = 0;
+    for (let i = 0; i < imageData.data.length / 4; i++) {
+      let pixelStart = i * 4;
+      let r, g, b;
+      [r, g, b] = imageData.data.slice(pixelStart, pixelStart + 3 + 1);
+      if(this.keyColorCheckFn(r, g, b)) imageData.data[pixelStart + 3] = 0;
     }
-    this.ctx.putImageData(frame, 0, 0);
+
+    this.context2d.putImageData(imageData, 0, 0);
     return;
   }
 }
