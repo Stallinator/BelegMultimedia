@@ -24,7 +24,11 @@ class VideoPlayer {
     }.bind(this), false);
 
     videoElement.addEventListener('play', function () {
-      this.drawFrameTimer();
+      this.drawFrame();
+    }.bind(this), false);
+
+    videoElement.addEventListener('loadeddata', function () {
+      this.drawFrame();
     }.bind(this), false);
 
     videoElement.addEventListener('seeked', function () {
@@ -40,30 +44,22 @@ class VideoPlayer {
     this.canvas.height = this.height;
   }
 
-  drawFrameTimer() {
-    if (this.videoElement.paused || this.videoElement.ended) return;
-    
-    this.setSizeToVideoElement();
-    this.drawFrame();
-
-    setTimeout(function () {
-      this.drawFrameTimer();
-    }.bind(this), 0);
-  }
-
   drawFrame() {
     this.context2d.drawImage(this.videoElement, 0, 0, this.width, this.height);
     let imageData = this.context2d.getImageData(0, 0, this.width, this.height);    
 
-    for (let i = 0; i < imageData.data.length / 4; i++) {
-      let pixelStart = i * 4;
-      let r, g, b;
-      [r, g, b] = imageData.data.slice(pixelStart, pixelStart + 3 + 1);
+    for (let i = 0, pixelStart = 0
+      ; i < imageData.data.length / 4
+      ; i++, pixelStart = i * 4) {
+      let [r, g, b] = imageData.data.slice(pixelStart, pixelStart + 3 + 1);
       if(this.keyColorCheckFn(r, g, b)) imageData.data[pixelStart + 3] = 0;
     }
 
     this.context2d.putImageData(imageData, 0, 0);
-    return;
+
+    if (this.videoElement.paused || this.videoElement.ended) return;
+    
+    requestAnimationFrame(this.drawFrame.bind(this));
   }
 }
 export default VideoPlayer;
