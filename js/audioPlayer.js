@@ -26,10 +26,6 @@ class AudioPlayer {
     this.analyserNode.connect(webAudioManager.getDestination());
 
     webAudioManager.registerAudioPlayer(this);
-
-
-    //this.togglePlay.bind(this);
-    //this.chang.bind(this);
   }
 
   getByteFrequencyData() {

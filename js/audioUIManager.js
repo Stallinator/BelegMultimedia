@@ -4,6 +4,7 @@ import AudioPlayerUI from './audioPlayerUI.js';
 class AudioUIManager {
 
   KS_PRESSED = 148;
+  KS_SLIDE = 180;
 
   KI_CROSSFADE_SLIDER = 64;
   KI_TOGGLE_PLAY_1 = 16;
@@ -23,9 +24,9 @@ class AudioUIManager {
           this.crossfadeValue = valueIn;
           webAudioManager.crossfade(valueIn);
           this.updateUI();
-        } else if(e.detail.data[0] != this.KS_PRESSED && e.detail.data[1] == this.KI_TOGGLE_LOW_PASS_1) {
+        } else if(e.detail.data[0] == this.KS_SLIDE && e.detail.data[1] == this.KI_TOGGLE_LOW_PASS_1) {
           this.audioPlayersUI[0].effect1Slider.value = e.detail.data[2] * (100 / 127) * 200;
-        } else if(e.detail.data[0] != this.KS_PRESSED && e.detail.data[1] == this.KI_TOGGLE_LOW_PASS_2) {
+        } else if(e.detail.data[0] == this.KS_SLIDE && e.detail.data[1] == this.KI_TOGGLE_LOW_PASS_2) {
           this.audioPlayersUI[1].effect1Slider.value = e.detail.data[2] * (100 / 127) * 200;
         } else if (e.detail.data[0] == this.KS_PRESSED) {
           switch(e.detail.data[1]) {
@@ -42,8 +43,6 @@ class AudioUIManager {
             case this.KI_TOGGLE_LOW_PASS_2:
               this.audioPlayersUI[1].toggleEffect1();
               this.audioPlayersUI[1].effect1Btn.checked = !this.audioPlayersUI[1].effect1Btn.checked;
-              break;
-            default:
               break;
           }
         }

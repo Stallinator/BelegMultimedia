@@ -58,7 +58,6 @@ class AudioPlayerUI {
   }
 
   toggleEffect1(event) {
-    //console.log(event);
     this.audioPlayer.toggleLowPassFilter();
   }
 
