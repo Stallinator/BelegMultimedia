@@ -3,8 +3,17 @@
 }
 
 .stackedCanvasWrapper canvas {
-    top: 30px;
     left: 50%;
+    position: absolute;
+    transform: translateX(-50%);
+}
+
+.audioLinkWrapper {
+    text-align: center;
+    position: relative;
+}
+
+.audioLinkWrapper u a {
     position: absolute;
     transform: translateX(-50%);
 }

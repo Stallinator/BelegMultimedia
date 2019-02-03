@@ -41,7 +41,7 @@
                 </div>
                 <div class="row">
                     <div class="col col-12">
-                        Abspielgeschwindigkeit: <input type="number" id="pbspeed1" value="1"><br>
+                        Abspielgeschwindigkeit: <input type="number" id="pbspeed1" value="1" min="1" max="10"><br>
                     </div>
                 </div>
             </div>
@@ -59,7 +59,7 @@
                 </div>
                 <div class="row">
                     <div class="col col-12">
-                        Abspielgeschwindigkeit: <input type="number" id="pbspeed2" value="1"><br>
+                        Abspielgeschwindigkeit: <input type="number" id="pbspeed2" value="1" min="1" max="10"><br>
                     </div>
                 </div>
             </div>
@@ -68,9 +68,8 @@
             <canvas id="c4" style="background-image: url(media/bg_space.jpg);"></canvas>
             <canvas id="c3"></canvas>
         </div>
-
-        <div style="text-align: center; position: relative; clear: both;">
-            <u><a href="audio.html">Zu Audio</a></u>
+        <div class="audioLinkWrapper">
+            <u><a href="audio.html" id="audioLink">Zu Audio</a></u>
         </div>
     </div>
 </body>
